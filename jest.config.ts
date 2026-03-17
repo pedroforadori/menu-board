@@ -8,15 +8,15 @@ export default {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
   transform: {
-    '^.+\\.(ts|tsx)$': ['ts-jest', { useESM: true }],
-  },
-  transformIgnorePatterns: ['/node_modules/(?!@mswjs|msw)'],
-  extensionsToTreatAsEsm: ['.ts', '.tsx', '.mjs'],
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'mjs'],
-  globals: {
-    'ts-jest': {
+    '^.+\\.(ts|tsx)$': ['ts-jest', {
       useESM: true,
-      tsconfig: 'tsconfig.json',
-    },
+      tsconfig: 'tsconfig.test.json'
+    }],
   },
+  transformIgnorePatterns: [
+    // Transform ESM packages that Jest needs to handle
+    '/node_modules/(?!(@mswjs|msw|@testing-library|styled-components|antd)/)',
+  ],
+  extensionsToTreatAsEsm: ['.ts', '.tsx'],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'mjs'],
 };

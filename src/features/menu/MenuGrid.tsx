@@ -1,5 +1,5 @@
 import { Col, Row } from 'antd';
-import { Section, CategoryTitle } from './styles/MenuGrid.styles';
+import { Section, CategoryTitle } from './styles/MenuGrid';
 import type { MenuData } from '../../types';
 import { ProductCard } from './ProductCard';
 

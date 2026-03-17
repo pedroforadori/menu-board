@@ -14,6 +14,7 @@ export const GlobalStyle = createGlobalStyle`
     background-image: ${({ theme }) => (theme.backgroundImage ? `url(${theme.backgroundImage})` : 'none')};
     background-size: cover;
     background-position: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   * {

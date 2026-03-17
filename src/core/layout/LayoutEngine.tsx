@@ -1,4 +1,4 @@
-import { LayoutRoot, ContentArea } from './LayoutEngine.styles';
+import { LayoutRoot, ContentArea } from './styles/LayoutEngine';
 import type { LayoutConfig, MenuData, Product } from '../../types';
 import { MenuGrid } from '../../features/menu/MenuGrid';
 import { MenuList } from '../../features/menu/MenuList';

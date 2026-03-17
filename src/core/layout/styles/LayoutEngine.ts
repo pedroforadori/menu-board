@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import type { LayoutConfig } from '../../types';
+import type { LayoutConfig } from '../../../types';
 
 export const LayoutRoot = styled.div<{ orientation: LayoutConfig['orientation'] }>`
   display: flex;

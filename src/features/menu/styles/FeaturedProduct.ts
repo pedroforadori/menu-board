@@ -24,9 +24,10 @@ export const Background = styled.div<{ image?: string }>`
 export const StyledCard = styled(Card)`
   max-width: 680px;
   width: 100%;
-  background: rgba(0, 0, 0, 0.52);
+  background: ${({ theme }) => theme.mode === 'light' ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.52)'};
   border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  transition: background 0.3s ease, border-color 0.3s ease;
 
   .ant-card-body {
     padding: 28px;

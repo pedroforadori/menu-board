@@ -1,5 +1,5 @@
 import { Typography } from 'antd';
-import { Featured, Background, StyledCard } from './styles/FeaturedProduct.styles';
+import { Featured, Background, StyledCard } from './styles/FeaturedProduct';
 import type { Product } from '../../types';
 
 const { Title, Paragraph, Text } = Typography;

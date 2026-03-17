@@ -48,7 +48,6 @@ npm test
 
 ## 🎥 Suporte para 1.000 telas
 
-- Servir conteúdo via CDN (minimiza requests ao backend)
 - Manter backend stateless + auto-scaling
 - Usar cache de configuração (Redis, cache no edge)
 - Enviar updates via pub/sub (WebSocket / SSE) para reduzir polling

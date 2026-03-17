@@ -17,9 +17,12 @@ export const Header = styled.header`
   left: 0;
   right: 0;
   z-index: 2;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 70%, transparent 100%);
+  background: ${({ theme }) => theme.mode === 'light'
+    ? 'linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 70%, rgba(255, 255, 255, 0.5) 100%)'
+    : 'linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 70%, transparent 100%)'};
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border};
+  transition: background 0.3s ease, border-color 0.3s ease;
 `;
 
 export const Brand = styled.div`
@@ -33,10 +36,11 @@ export const Logo = styled.img`
   width: auto;
   max-width: 120px;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.15);
+  background: ${({ theme }) => theme.mode === 'light' ? 'rgba(0, 0, 0, 0.08)' : 'rgba(255, 255, 255, 0.15)'};
   padding: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: ${({ theme }) => theme.mode === 'light' ? '0 4px 12px rgba(0, 0, 0, 0.1)' : '0 4px 12px rgba(0, 0, 0, 0.3)'};
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 `;
 
 export const Loading = styled.div`

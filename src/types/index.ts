@@ -2,6 +2,8 @@ export type Orientation = 'landscape' | 'portrait';
 
 export type BadgeType = 'new' | 'promo' | 'sold-out';
 
+export type ThemeMode = 'light' | 'dark';
+
 export interface ThemeConfig {
   primaryColor: string;
   secondaryColor: string;
@@ -80,5 +82,6 @@ declare module 'styled-components' {
       baseSize: number;
     };
     backgroundImage?: string;
+    mode: ThemeMode;
   }
 }

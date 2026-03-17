@@ -1,7 +1,5 @@
-import { List, Typography } from 'antd';
-import { ListItem, Section, CategoryTitle, ImageContainer, ProductImage, Placeholder, TextProduct } from './styles/MenuList.styles';
+import { ListItem, Section, CategoryTitle, ImageContainer, ProductImage, Placeholder, TextProduct, ProductDescription, ProductPrice } from './styles/MenuList';
 import type { MenuData } from '../../types';
-const { Paragraph } = Typography;
 
 export function MenuList({ menu, showCategories }: { menu: MenuData; showCategories: boolean }) {
   return (
@@ -9,28 +7,38 @@ export function MenuList({ menu, showCategories }: { menu: MenuData; showCategor
       {menu.categories.map((category) => (
         <Section key={category.id}>
           {showCategories && <CategoryTitle level={3}>{category.title}</CategoryTitle>}
-          <List
-            dataSource={category.products}
-            renderItem={(product) => (
-              <ListItem>
+          <div>
+            {category.products.map((product) => (
+              <ListItem key={product.id}>
                 <ImageContainer>
                   {product.imageUrl ? (
                     <ProductImage src={product.imageUrl} alt={product.name} />
                   ) : (
-                    <Placeholder>🍔</Placeholder>
+                    <Placeholder>
+                      <img
+                        src="https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="Sem imagem"
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                      />
+                    </Placeholder>
                   )}
                 </ImageContainer>
-                <TextProduct
-                  title={
+                <TextProduct>
+                  <div style={{ fontSize: '16px', fontWeight: 'bold', marginBottom: '8px' }}>
                     <span>
-                      <strong>{product.name}</strong> <span style={{ color: 'rgba(255,255,255,0.7)' }}>R$ {product.price.toFixed(2)}</span>
+                      <strong>{product.name}</strong> 
                     </span>
-                  }
-                  description={<Paragraph ellipsis={{ rows: 2 }}>{product.description}</Paragraph>}
-                />
+                  </div>
+                  <div>
+                    <ProductDescription>
+                      {product.description}
+                    </ProductDescription>
+                  </div>
+                  <ProductPrice>R$ {product.price.toFixed(2)}</ProductPrice>
+                </TextProduct>
               </ListItem>
-            )}
-          />
+            ))}
+          </div>
         </Section>
       ))}
     </div>

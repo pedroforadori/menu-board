@@ -89,5 +89,38 @@ export const menuDataMock: MenuData = {
         },
       ],
     },
+        {
+      id: 'cat-3',
+      title: 'Sobremesas',
+      order: 3,
+      products: [
+        {
+          id: 'prod-010',
+          name: 'Lemonade Fresh',
+          description: 'Refrescante de limão com hortelã.',
+          price: 12.9,
+          imageUrl: 'https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80',
+          badge: 'promo',
+        },
+        {
+          id: 'prod-011',
+          name: 'Milkshake de Ovomaltine',
+          description: 'Delicioso milkshake cremoso com crocante.',
+          price: 18.0,
+        },
+        {
+          id: 'prod-012',
+          name: 'Coca-Cola',
+          description: 'Refrigerante clássico.',
+          price: 8.5,
+        },
+        {
+          id: 'prod-013',
+          name: 'Orange Juice',
+          description: 'Suco de laranja natural.',
+          price: 10.0,
+        },
+      ],
+    },
   ],
 };
