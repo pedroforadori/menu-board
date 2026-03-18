@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Root, Slide, Video, Image } from './MediaCarousel.styles';
+import { Root, Slide, Video, Image } from './styles/MediaCarousel.styles';
 import type { MediaSlide } from '../../types';
 
 export function MediaCarousel({ slides }: { slides: MediaSlide[] }) {

@@ -56,4 +56,4 @@ npm test
 
 - Usei **Ant Design** para aceleração da UI (trade-off: bundle size maior).
 - O layout e tema são definidos por JSON para facilitar configurações dinâmicas.
-- A aplicação é pensada para ser **PWA-friendly**, mas não inclui offline completo ainda.
+- A aplicação é pensada para ser **PWA-friendly**, mas não inclui offline completo ainda. 

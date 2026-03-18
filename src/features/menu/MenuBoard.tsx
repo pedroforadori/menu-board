@@ -3,11 +3,11 @@ import { AppstoreOutlined, UnorderedListOutlined, SunOutlined, MoonOutlined } fr
 import { useEffect, useMemo, useState } from 'react';
 import { Root, Header, Brand, Logo, Loading } from './styles/MenuBoard';
 import { fetchMenuData, fetchTenantConfig } from '../../services/api';
-import type { MenuData, TenantConfig, Product, LayoutMode } from '../../types';
+import type { MenuData, TenantConfig, Product } from '../../types';
 import { buildTheme } from '../../core/theme/theme';
 import { AppThemeProvider } from '../../core/theme/ThemeProvider';
 import { LayoutEngine } from '../../core/layout/LayoutEngine';
-import { MediaCarousel } from '../media/MediaCarousel';
+import { PromotionsCarousel } from '../promotions/PromotionsCarousel';
 import { useTheme } from '../../context';
 import { useLayout } from '../../context/LayoutContext';
 
@@ -92,8 +92,11 @@ export function MenuBoard() {
             </Button>
           </div>
         </Header>
-        <MediaCarousel slides={tenant.media} />
-        {currentConfig && <LayoutEngine config={currentConfig} menu={menu} featuredProduct={featuredProduct} />}
+        {/* <ScrollableContent> */}
+          {/* <MediaCarousel slides={tenant.media} /> */}
+          <PromotionsCarousel promotions={tenant.promotions} />
+          {currentConfig && <LayoutEngine config={currentConfig} menu={menu} featuredProduct={featuredProduct} />}
+        {/* </ScrollableContent> */}
       </Root>
     </AppThemeProvider>
   );

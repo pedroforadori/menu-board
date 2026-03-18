@@ -35,6 +35,15 @@ export interface MediaSlide {
   order: number;
 }
 
+export interface Promotion {
+  id: string;
+  title: string;
+  description?: string;
+  imageUrl: string;
+  durationSeconds: number;
+  order: number;
+}
+
 export interface Product {
   id: string;
   name: string;
@@ -64,6 +73,7 @@ export interface TenantConfig {
   theme: ThemeConfig;
   layout: LayoutConfig;
   media: MediaSlide[];
+  promotions: Promotion[];
 }
 
 // Styled Components theme type

@@ -4,7 +4,7 @@ export const Root = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  /* overflow: vi; */
 `;
 
 export const Header = styled.header`
@@ -12,7 +12,7 @@ export const Header = styled.header`
   align-items: center;
   justify-content: space-between;
   padding: 18px 24px;
-  position: absolute;
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
@@ -50,3 +50,9 @@ export const Loading = styled.div`
   justify-content: center;
   color: rgba(255, 255, 255, 0.85);
 `;
+
+// export const ScrollableContent = styled.div`
+//   height: 100%;
+//   overflow-y: auto;
+//   overflow-x: hidden;
+// `;

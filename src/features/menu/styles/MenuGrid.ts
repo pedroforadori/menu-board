@@ -5,7 +5,7 @@ const { Title } = Typography;
 
 export const Section = styled.section`
   margin-bottom: 2rem;
-  margin-top: 5rem;
+  margin-top: 2rem;
 `;
 
 export const CategoryTitle = styled(Title)`

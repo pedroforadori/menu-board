@@ -5,7 +5,7 @@ const { Title } = Typography;
 
 export const Section = styled.section`
   margin-bottom: 2rem;
-  margin-top: 5rem;
+  margin-top: 2rem;
 `;
 
 export const CategoryTitle = styled(Title)`
@@ -50,7 +50,7 @@ export const Placeholder = styled.div`
 `;
 
 export const ImageContainer = styled.div`
-  min-width: 160px;
+  min-width: 200px;
   position: relative;
   height: 120px;
   overflow: hidden;

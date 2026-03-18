@@ -39,4 +39,22 @@ export const tenantConfigMock: TenantConfig =
         //   order: 2,
         // },
     ],
+    promotions: [
+        {
+            id: 'promo-1',
+            title: 'Desconto de 20% em Burgers',
+            description: 'Aproveite nossa promoção especial!',
+            imageUrl: 'https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80',
+            durationSeconds: 8,
+            order: 1,
+        },
+        {
+            id: 'promo-2',
+            title: 'Combo Família',
+            description: 'Burger + Batata + Refrigerante por R$ 45',
+            imageUrl: 'https://images.unsplash.com/photo-1520072959219-c595dc870360?q=80&w=1290&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+            durationSeconds: 8,
+            order: 2,
+        },
+    ],
 };

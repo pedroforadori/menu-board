@@ -5,7 +5,7 @@ export const LayoutRoot = styled.div<{ orientation: LayoutConfig['orientation'] 
   display: flex;
   flex-direction: ${({ orientation }) => (orientation === 'portrait' ? 'column' : 'row')};
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   overflow: hidden;
 `;
 
