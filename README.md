@@ -69,7 +69,7 @@ Como o projeto foca no Frontend, o backend seria estruturado da seguinte forma:
 
 Para suportar um volume massivo de dispositivos sem degradar a performance:
 -   **Estratégia de Cache**: Implementação de **Redis** no backend para cachear o JSON de configuração de cada Tenant.
--   **Offline Fallback**: Uso de **Service Workers** para cachear imagens, vídeos e o último JSON de menu disponível, garantindo que a TV não fique preta caso a internet oscile. [cite: 1]
+-   **Offline Fallback**: Uso de **Service Workers** para cachear imagens, vídeos e o último JSON de menu disponível, garantindo que a TV não fique preta caso a internet oscile.
 -   **CDN (Content Delivery Network)**: Distribuição de mídias pesadas (vídeos 4K) via borda para reduzir latência.
 -   **Atualização Otimizada**: Em vez de polling, as TVs aguardam um sinal via WebSocket para buscar novos dados, reduzindo drasticamente o overhead no servidor.
 
