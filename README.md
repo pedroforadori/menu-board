@@ -75,5 +75,5 @@ Para suportar um volume massivo de dispositivos sem degradar a performance:
 
 ## 🧩 Trade-offs
 
--   **Ant Design**: A escolha trouxe velocidade, porém aumentou o tamanho inicial do bundle. [cite_start]Para produção, seria aplicado *tree-shaking* rigoroso.
+-   **Ant Design**: A escolha trouxe velocidade, porém aumentou o tamanho inicial do bundle. Para produção, seria aplicado *tree-shaking* rigoroso.
 -   **Styled Components vs Tailwind**: Optou-se por Styled Components pela facilidade de manipular variáveis de tema complexas vindas de um banco de dados, embora o Tailwind tenha performance de runtime superior.
