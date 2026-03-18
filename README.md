@@ -43,7 +43,7 @@ npm test
 A estrutura segue o padrão de **Feature-Based Architecture**, isolando domínios de negócio:
 -   `/src/features/menu`: Lógica de exibição de categorias e produtos.
 -   `/src/features/media`: Gerenciamento de slides de fotos e vídeos promocionais.
--   [cite_start]`/src/core`: Contém a infraestrutura compartilhada, como o `LayoutEngine` e o `ThemeProvider`. [cite: 1]
+-   `/src/core`: Contém a infraestrutura compartilhada, como o `LayoutEngine` e o `ThemeProvider`. [cite: 1]
 
 ## 🗂️ Modelagem de Dados
 
@@ -55,7 +55,7 @@ O sistema é guiado por uma estrutura **JSON-Driven**, permitindo que o layout m
     -   `layout`: 'grid' | 'list' | 'highlight'.
     -   `orientation`: 'horizontal' | 'vertical'.
 -   **`MenuData`**: Estrutura hierárquica de `Categories` -> `Products`.
--   [cite_start]**`MediaSlide`**: Lista de assets com metadados de tempo de exibição (`duration`). [cite: 1]
+-   **`MediaSlide`**: Lista de assets com metadados de tempo de exibição (`duration`). [cite: 1]
 
 ## 📈 Arquitetura de Backend (Proposta)
 
@@ -71,9 +71,9 @@ Para suportar um volume massivo de dispositivos sem degradar a performance:
 -   **Estratégia de Cache**: Implementação de **Redis** no backend para cachear o JSON de configuração de cada Tenant.
 -   [cite_start]**Offline Fallback**: Uso de **Service Workers** para cachear imagens, vídeos e o último JSON de menu disponível, garantindo que a TV não fique preta caso a internet oscile. [cite: 1]
 -   **CDN (Content Delivery Network)**: Distribuição de mídias pesadas (vídeos 4K) via borda para reduzir latência.
--   [cite_start]**Atualização Otimizada**: Em vez de polling, as TVs aguardam um sinal via WebSocket para buscar novos dados, reduzindo drasticamente o overhead no servidor. [cite: 1]
+-   **Atualização Otimizada**: Em vez de polling, as TVs aguardam um sinal via WebSocket para buscar novos dados, reduzindo drasticamente o overhead no servidor. [cite: 1]
 
 ## 🧩 Trade-offs
 
 -   **Ant Design**: A escolha trouxe velocidade, porém aumentou o tamanho inicial do bundle. [cite_start]Para produção, seria aplicado *tree-shaking* rigoroso. [cite: 1]
--   [cite_start]**Styled Components vs Tailwind**: Optou-se por Styled Components pela facilidade de manipular variáveis de tema complexas vindas de um banco de dados, embora o Tailwind tenha performance de runtime superior. [cite: 1]
+-   **Styled Components vs Tailwind**: Optou-se por Styled Components pela facilidade de manipular variáveis de tema complexas vindas de um banco de dados, embora o Tailwind tenha performance de runtime superior. [cite: 1]
