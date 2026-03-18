@@ -1,59 +1,79 @@
 # Digital Menu Board (Front-end)
 
-Aplicação de demonstração de **Menu Board Digital** para exibição em TVs (16:9 / 9:16), com layout configurável, tema dinâmico e alternância automática de mídia.
+Aplicação robusta e altamente customizável de **Menu Board Digital**, projetada para exibição em Smart TVs e Mini PCs. O sistema suporta orientações horizontal e vertical, temas dinâmicos via JSON e alternância inteligente de mídias promocionais.
 
-## 🚀 Como rodar
+## 🚀 Como Rodar
 
+### Pré-requisitos
+* Node.js (v18+)
+* npm ou yarn
+
+### Instalação e Execução
 ```bash
+# Clone o repositório
+git clone https://github.com/seu-usuario/menu-board.git
+
+# Acesse a pasta
+cd menu-board
+
+# Instale as dependências
 npm install
+
+# Inicie o servidor de desenvolvimento
 npm run dev
 ```
-
-A aplicação será exibida em `http://localhost:5173` por padrão.
+A aplicação estará disponível em `http://localhost:5173`.
 
 ## 🧪 Testes
-
 ```bash
+# Executar testes unitários e de componentes
 npm test
 ```
 
-## 🧠 Decisões arquiteturais
+## 🧠 Decisões Arquiteturais
 
-### ✅ Arquitetura
-- **React + TypeScript**: tipagem segura e escalabilidade.
-- **Vite**: dev server rápido e build otimizado.
-- **Styled Components**: tema dinâmico + CSS-in-JS para facilitar customização.
-- **Ant Design**: componentes prontos para layout (cards, grid, list).
-- **MSW (Mock Service Worker)**: simula API para facilitar desenvolvimento de frontend isolado.
+### ✅ Stack Técnica
+-   **React + TypeScript**: Escolhido pela robustez na tipagem e facilidade de manutenção em larga escala.
+-   **Vite**: Utilizado como build tool para garantir um Hot Module Replacement (HMR) extremamente rápido, essencial em ajustes visuais de layout.
+-   **Styled Components**: Implementação de CSS-in-JS que facilita a injeção de temas dinâmicos (cores, fontes) recebidos via API.
+-   [cite_start]**Ant Design**: Utilizado estrategicamente para componentes de UI complexos (Grids e Lists), acelerando o desenvolvimento da engine de layout. [cite: 1]
+-   [cite_start]**MSW (Mock Service Worker)**: Empregado para interceptar requisições de rede e simular uma API real, permitindo o desenvolvimento do frontend de forma isolada mas realista. [cite: 1]
 
-### ✅ Organização de pastas
-- `/src/features` – funcionalidades por domínio (menu, mídia, etc.)
-- `/src/core` – infraestrutura compartilhada (tema, layout engine)
-- `/src/mocks` – dados e endpoints simulados (MSW)
-- `/src/services` – abstração de chamadas HTTP
-- `/src/types.ts` – modelagem de dados (tenant, menu, produtos)
+### ✅ Organização por Features
+A estrutura segue o padrão de **Feature-Based Architecture**, isolando domínios de negócio:
+-   `/src/features/menu`: Lógica de exibição de categorias e produtos.
+-   `/src/features/media`: Gerenciamento de slides de fotos e vídeos promocionais.
+-   [cite_start]`/src/core`: Contém a infraestrutura compartilhada, como o `LayoutEngine` e o `ThemeProvider`. [cite: 1]
 
-## 🗂️ Modelagem de dados
+## 🗂️ Modelagem de Dados
 
-- **TenantConfig**: configurações de tema (cores, tipografia, background), layout e mídia.
-- **MenuData**: categorias e produtos.
-- **MediaSlide**: imagens/vídeos promocionais com tempo de exibição.
+O sistema é guiado por uma estrutura **JSON-Driven**, permitindo que o layout mude sem novo deploy:
 
-## 📈 Como escalar
+-   **`TenantConfig`**: Define a identidade visual.
+    -   `colors`: primary, secondary, background.
+    -   `typography`: family, sizes.
+    -   `layout`: 'grid' | 'list' | 'highlight'.
+    -   `orientation`: 'horizontal' | 'vertical'.
+-   **`MenuData`**: Estrutura hierárquica de `Categories` -> `Products`.
+-   [cite_start]**`MediaSlide`**: Lista de assets com metadados de tempo de exibição (`duration`). [cite: 1]
 
-- **Cache na borda / CDN**: servir JSON de configuração e assets estáticos.
-- **Cache no cliente**: uso de HTTP caching (ETag, Cache-Control) + SWR/React Query.
-- **Multi-tenant**: cada tenant entrega seu JSON de configuração + menu.
-- **Sincronização de telas**: WebSocket para invalidar cache e forçar refresh de configuração.
+## 📈 Arquitetura de Backend (Proposta)
 
-## 🎥 Suporte para 1.000 telas
+Como o projeto foca no Frontend, o backend seria estruturado da seguinte forma:
+1.  **Node.js + NestJS**: Para uma API escalável e modular.
+2.  **Multi-tenancy**: Identificação do restaurante via `X-Tenant-ID` no header ou subdomínio.
+3.  **Persistência**: PostgreSQL para dados relacionais (menus/preços) e MongoDB para os JSONs flexíveis de configuração de layout.
+4.  **Sincronização**: Uso de **WebSockets (Socket.io)** para notificar as TVs sobre atualizações de preço ou troca de layout em tempo real.
 
-- Manter backend stateless + auto-scaling
-- Usar cache de configuração (Redis, cache no edge)
-- Enviar updates via pub/sub (WebSocket / SSE) para reduzir polling
+## 🎥 Escalabilidade e Suporte para 1.000+ Telas
+
+Para suportar um volume massivo de dispositivos sem degradar a performance:
+-   **Estratégia de Cache**: Implementação de **Redis** no backend para cachear o JSON de configuração de cada Tenant.
+-   [cite_start]**Offline Fallback**: Uso de **Service Workers** para cachear imagens, vídeos e o último JSON de menu disponível, garantindo que a TV não fique preta caso a internet oscile. [cite: 1]
+-   **CDN (Content Delivery Network)**: Distribuição de mídias pesadas (vídeos 4K) via borda para reduzir latência.
+-   [cite_start]**Atualização Otimizada**: Em vez de polling, as TVs aguardam um sinal via WebSocket para buscar novos dados, reduzindo drasticamente o overhead no servidor. [cite: 1]
 
 ## 🧩 Trade-offs
 
-- Usei **Ant Design** para aceleração da UI (trade-off: bundle size maior).
-- O layout e tema são definidos por JSON para facilitar configurações dinâmicas.
-- A aplicação é pensada para ser **PWA-friendly**, mas não inclui offline completo ainda. 
+-   **Ant Design**: A escolha trouxe velocidade, porém aumentou o tamanho inicial do bundle. [cite_start]Para produção, seria aplicado *tree-shaking* rigoroso. [cite: 1]
+-   [cite_start]**Styled Components vs Tailwind**: Optou-se por Styled Components pela facilidade de manipular variáveis de tema complexas vindas de um banco de dados, embora o Tailwind tenha performance de runtime superior. [cite: 1]
