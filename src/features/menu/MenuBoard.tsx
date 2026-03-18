@@ -3,19 +3,21 @@ import { AppstoreOutlined, UnorderedListOutlined, SunOutlined, MoonOutlined } fr
 import { useEffect, useMemo, useState } from 'react';
 import { Root, Header, Brand, Logo, Loading } from './styles/MenuBoard';
 import { fetchMenuData, fetchTenantConfig } from '../../services/api';
-import type { MenuData, TenantConfig, Product, LayoutMode, ThemeMode } from '../../types';
+import type { MenuData, TenantConfig, Product, LayoutMode } from '../../types';
 import { buildTheme } from '../../core/theme/theme';
 import { AppThemeProvider } from '../../core/theme/ThemeProvider';
 import { LayoutEngine } from '../../core/layout/LayoutEngine';
 import { MediaCarousel } from '../media/MediaCarousel';
+import { useTheme } from '../../context';
+import { useLayout } from '../../context/LayoutContext';
 
 const { Title } = Typography;
 
 export function MenuBoard() {
+  const { themeMode, toggleTheme } = useTheme();
+  const { layoutMode, toggleLayout } = useLayout();
   const [tenant, setTenant] = useState<TenantConfig | null>(null);
   const [menu, setMenu] = useState<MenuData | null>(null);
-  const [layoutMode, setLayoutMode] = useState<LayoutMode>('grid');
-  const [themeMode, setThemeMode] = useState<ThemeMode>('dark');
 
   useEffect(() => {
     let cancelled = false;
@@ -75,14 +77,14 @@ export function MenuBoard() {
             <Button
               type="default"
               icon={themeMode === 'dark' ? <SunOutlined /> : <MoonOutlined />}
-              onClick={() => setThemeMode(themeMode === 'dark' ? 'light' : 'dark')}
+              onClick={toggleTheme}
               size="large"
               style={{ background: "transparent", color: theme.colors.text, border: 'none', outline: 'none' }}
             />
             <Button
               type="default"
               icon={layoutMode === 'grid' ? <UnorderedListOutlined /> : <AppstoreOutlined />}
-              onClick={() => setLayoutMode(layoutMode === 'grid' ? 'list' : 'grid')}
+              onClick={toggleLayout}
               size="large"
               style={{ background: "transparent", color: theme.colors.text, border: 'none', outline: 'none' }}
             >
